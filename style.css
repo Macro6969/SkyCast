@@ -1,0 +1,298 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.background {
+    width: 100%;
+    min-height: 100vh; 
+    position: relative;
+    overflow: visible; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    
+    /* 1. REDUCE this padding so elements start higher up naturally */
+    padding-top: 3rem; 
+    padding-bottom: 3rem;
+    gap: 25px;
+    box-sizing: border-box;
+}
+
+#bgimg {
+    /* 3. Freeze the image relative to the glass viewport monitor */
+    position: fixed;
+    top: -10px;
+    left: -10px;
+    
+    /* 4. Keeps the photo slightly oversized to bleed off-screen and hide edge blur artifacts */
+    width: calc(100vw + 20px);  
+    height: calc(100vh + 20px);
+    
+    object-fit: cover;
+    z-index: -1;
+    filter: blur(5px) brightness(0.6);
+    
+    /* Strips out layout conflict properties */
+    transform: none;
+    margin: 0;
+}
+/* #weather-card {
+    
+    top: 50%;
+    
+    align-items: center;
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+} */
+#weather-card {
+    /* REMOVE THESE */
+    /* position: absolute; */
+    /* top: 42%; */
+    /* left: 50%; */
+    /* transform: translate(-50%); */
+
+    /* KEEP EVERYTHING ELSE */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    gap: 15px;
+    width: 380px;
+    box-sizing: border-box;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+#title {
+    /* 2. REMOVE position: absolute so it sits at the top of our layout flow */
+    position: relative;
+    top: unset;
+    left: unset;
+    transform: none;
+    margin-bottom: 10px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+#title h1{
+    font-size: 2.5em;
+}
+.search-box {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    align-items: center;
+    height: 3.5rem;
+    width: 380px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+
+    /* 3. REMOVE the absolute position variables here too! */
+    position: relative;
+    top: unset;
+    left: unset;
+    transform: none;
+    margin-bottom: 0px;
+}
+#city-input {
+    flex-grow: 0.4;
+    padding: 10px;
+    width: 50%;
+    border: none;
+    color:white;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    background: none;
+    right:0.2rem;
+    border-radius: 8px ;
+    outline: none;
+}
+#city-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+#search-btn {
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: none;
+    height:2rem;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease; /* Smooth scaling effect on hover */
+}
+#search-btn:hover{
+    transform: scale(1.2);
+}
+
+
+#locationimg{
+    height:2rem;
+    width:2rem;
+}
+
+#current-location{
+    padding:0px;
+    gap:8px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    top:1rem;
+    /* left: 1.2rem; */
+}
+#current-location p{
+    font-size: 0.8rem;
+}
+#locationimg1{
+    height:1.4rem;
+    width:1.4rem;
+}
+#temperature {
+    font-size: 4rem; /* Adjusted text sizing */
+    font-weight: 500;
+    text-align: left; /* Aligns text cleanly to the left edge */
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Forces child elements (Location & Temp) to align left */
+    width: 100%;
+    
+    margin-top: 0.8rem; /* Creates space below your absolute-positioned location element */
+}
+#temp{
+    display:flex;
+    flex-direction:row;
+    gap:5rem;
+    justify-content: center;
+    align-items: center;
+}
+#temp img{
+    height:8rem;
+    width:8rem;
+    object-fit:cover;
+    
+}
+.stats{
+    margin-top: 2rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    
+    
+
+}
+.firsttwo, .secondtwo{
+    
+    display:flex;
+    flex-direction:column;
+    gap: 15px; /* Creates clean vertical space between the upper and lower cards */
+    width: 46%;
+}
+/* .secondtwo{
+    display:flex;
+    flex-direction:row;
+    gap: 15px;  Creates clean vertical space between the upper and lower cards 
+    width: 46%;
+} */
+
+#humidity, #precipitation, #Wind-Speed, #uv {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center; 
+    padding:12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border-radius:8px;
+    background: rgba(255, 255, 255, 0.15);
+}
+#divider {
+    border: none; /* Removes the ugly default browser border */
+    height: 1px; /* Keeps the line razor thin */
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent line to match your card edges */
+    width: 100%; /* Spans all the way across the card inner width */
+    margin-top: 20px; /* Spacing below "Clear Sky" */
+    margin-bottom: 5px; /* Spacing above the stats block */
+}
+.weather-forecast {
+    /* REMOVE THESE QUERY OFFSETS */
+    /* position: relative; */
+    /* top: 116%; */
+    /* left: 50%; */
+    /* transform: translate(-50%); */
+
+    /* KEEP EVERYTHING ELSE */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    gap: 15px;
+    width: 380px;
+    box-sizing: border-box;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.weather-forecast img{
+    height:2rem;
+    width:2rem;
+    object-fit:contain;
+}
+.w{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+.w h4{
+    width:100px;
+    text-align:left;
+}
+#forecast-title{
+    bottom: 0;
+    height:2rem;
+    min-height:2rem;
+    display:flex;
+    align-items:center;
+    /* justify-content:center; */
+}
+#divider1 {
+    border: none; /* Removes the ugly default browser border */
+    height: 1px; /* Keeps the line razor thin */
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent line to match your card edges */
+    width: 100%; /* Spans all the way across the card inner width */
+    margin-top: 5px; /* Spacing below "Clear Sky" */
+    margin-bottom: 5px; /* Spacing above the stats block */
+}
+#temperature{
+    width:8rem;
+}
